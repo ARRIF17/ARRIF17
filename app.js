@@ -157,13 +157,13 @@ statueLoader.load(
     const statueLeft = statueGltf.scene.clone();
     const statueRight = statueGltf.scene.clone();
 
-    statueLeft.position.set(-1, 0, 3);
+    statueLeft.position.set(-2, 0, 3);
     statueLeft.scale.set(0.4, 0.4, 0.4);
-    statueLeft.rotation.y = Math.PI / 3;
+    statueLeft.rotation.y = Math.PI / 5;
 
-    statueRight.position.set(1, 0, 3);
+    statueRight.position.set(2, 0, 3);
     statueRight.scale.set(0.4, 0.4, 0.4);
-    statueRight.rotation.y = -Math.PI / 3;
+    statueRight.rotation.y = -Math.PI / 5;
 
     self.scene.add(statueLeft);
     self.scene.add(statueRight);
