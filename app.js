@@ -1,4 +1,5 @@
 
+
 import * as THREE from './libs/three/three.module.js';
 import { GLTFLoader } from './libs/three/jsm/GLTFLoader.js';
 import { DRACOLoader } from './libs/three/jsm/DRACOLoader.js';
@@ -66,20 +67,7 @@ class App{
                 self.boardData = obj;
             });
 	}
-	document.addEventListener("DOMContentLoaded", function () {
-  const infoBox = document.querySelector('#infoBox');
-
-  infoBox.addEventListener('click', () => {
-    // Show message after 2-second gaze (triggered by fuse)
-    const message = document.createElement('a-text');
-    message.setAttribute('value', 'Welcome to the VR Walkthrough!');
-    message.setAttribute('position', '0 2.5 -3');
-    message.setAttribute('color', 'black');
-    message.setAttribute('align', 'center');
-    message.setAttribute('scale', '1 1 1');
-    document.querySelector('a-scene').appendChild(message);
-  });
-});
+	
     setEnvironment(){
         const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
