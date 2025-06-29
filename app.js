@@ -159,11 +159,11 @@ statueLoader.load(
 
     statueLeft.position.set(-3, 0, 2.5);
     statueLeft.scale.set(0.4, 0.4, 0.4);
-    statueLeft.rotation.y = Math.PI / 10;
+    statueLeft.rotation.y = Math.PI / 13;
 
     statueRight.position.set(3, 0, 2.5);
     statueRight.scale.set(0.4, 0.4, 0.4);
-    statueRight.rotation.y = -Math.PI / 10;
+    statueRight.rotation.y = -Math.PI / 13;
 
     self.scene.add(statueLeft);
     self.scene.add(statueRight);
