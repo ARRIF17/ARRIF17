@@ -179,7 +179,7 @@ statueLoader.load(
 	document.addEventListener("DOMContentLoaded", () => {
   const audio = new Audio('audio/jazz-lounge-elevator-music-332339.mp3'); // ✅ Path matches your folder
   audio.loop = true;
-  audio.volume = 0.5;
+  audio.volume = 50;
 
   // Button to trigger playback (to satisfy browser autoplay policies)
   const startButton = document.createElement('button');
