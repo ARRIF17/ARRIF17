@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,22 +19,16 @@
             padding: 0;
         }
     </style>
-<a-scene>
-  <!-- Camera & cursor for gaze detection -->
-  <a-entity camera look-controls>
-    <a-entity 
-      cursor="fuse: true; fuseTimeout: 2000"
-      position="0 0 -1"
-      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-      material="color: black; shader: flat">
-    </a-entity>
-  </a-entity>
-
-  <!-- Gaze target -->
-  <a-box id="infoBox" position="0 1.5 -3" color="royalblue"></a-box>
-
-  <!-- Sky background -->
-  <a-sky color="#ECECEC"></a-sky>
-</a-scene>
+</head>
+<body>
+    <script src="./libs/fas.js"></script>
+	<script type="module">
+        import { App } from './app.js';
+        
+		document.addEventListener("DOMContentLoaded", function(){
+			const app = new App();
+			window.app = app;
+		});
+	</script>
 </body>
 </html>
