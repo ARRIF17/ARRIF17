@@ -157,7 +157,7 @@ statueLoader.load(
     const statueLeft = statueGltf.scene.clone();
     const statueRight = statueGltf.scene.clone();
 
-    statueLeft.position.set(-1, 10, -4);
+    statueLeft.position.set(6, 0, -4);
     statueLeft.scale.set(1, 1, 1);
     statueLeft.rotation.y = Math.PI / 2;
 
