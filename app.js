@@ -177,7 +177,7 @@ statueLoader.load(
 );
 
 	document.addEventListener("DOMContentLoaded", () => {
-  const audio = new Audio('audio/ambient.mp3'); // ✅ Path matches your folder
+  const audio = new Audio('audio/jazz-lounge-elevator-music-332339.mp3'); // ✅ Path matches your folder
   audio.loop = true;
   audio.volume = 0.5;
 
