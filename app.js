@@ -146,12 +146,7 @@ statueLoader.load(
   function (statueGltf) {
     console.log('Statue model loaded successfully');
 
-    // Optional debug
-    statueGltf.scene.traverse(child => {
-      if (child.isMesh) {
-        child.material = new THREE.MeshStandardMaterial({ color: 0xcccccc });
-        // child.material.wireframe = true; // Uncomment to debug
-      }
+    
     });
 
     const statueLeft = statueGltf.scene.clone();
