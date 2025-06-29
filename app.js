@@ -15,7 +15,7 @@ class App{
 	this.sound = new THREE.Audio(this.listener);
 
 	const audioLoader = new THREE.AudioLoader();
-	audioLoader.load('./audio/bgm.mp3', (buffer) => {
+	audioLoader.load('./audio/jazz-lounge-elevator-music-332339.mp3', (buffer) => {
 		this.sound.setBuffer(buffer);
 		this.sound.setLoop(true);
 		this.sound.setVolume(0.5);
