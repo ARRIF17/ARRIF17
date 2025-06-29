@@ -1,7 +1,4 @@
 
-
-
-
 import * as THREE from './libs/three/three.module.js';
 import { GLTFLoader } from './libs/three/jsm/GLTFLoader.js';
 import { DRACOLoader } from './libs/three/jsm/DRACOLoader.js';
@@ -28,7 +25,8 @@ class App{
         this.dolly.add( this.camera );
         this.dummyCam = new THREE.Object3D();
         this.camera.add( this.dummyCam );
-        
+        this.listener = new THREE.AudioListener();
+	this.camera.add(this.listener);
 		this.scene = new THREE.Scene();
         this.scene.add( this.dolly );
         
