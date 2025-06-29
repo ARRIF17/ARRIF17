@@ -29,11 +29,29 @@
 			window.app = app;
 		});
 	</script>
-		<a-scene>
+<a-scene>
   <a-box position="0 1.5 -3" color="royalblue"
-         onclick="alert('Welcome to the VR Walkthrough!')">
+         event-set__enter="_event: mouseenter; color: red"
+         event-set__leave="_event: mouseleave; color: royalblue"
+         id="infoBox">
   </a-box>
   <a-sky color="#ECECEC"></a-sky>
 </a-scene>
+
+<script>
+  let gazeTimer;
+
+  const box = document.getElementById('infoBox');
+
+  box.addEventListener('mouseenter', () => {
+    gazeTimer = setTimeout(() => {
+      alert('Welcome to the VR Walkthrough!');
+    }, 2000); // 2000 milliseconds = 2 seconds
+  });
+
+  box.addEventListener('mouseleave', () => {
+    clearTimeout(gazeTimer); // Cancel the alert if they look away too soon
+  });
+</script>
 </body>
 </html>
