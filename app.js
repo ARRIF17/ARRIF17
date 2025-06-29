@@ -177,11 +177,10 @@ statueLoader.load(
 );
 
 	document.addEventListener("DOMContentLoaded", () => {
-  const audio = new Audio('audio/jazz-lounge-elevator-music-332339.mp3'); // ✅ Path matches your folder
+  const audio = new Audio('audio/jazz-lounge-elevator-music-332339.mp3');
   audio.loop = true;
-  audio.volume = 50;
+  audio.volume = 0.5;
 
-  // Button to trigger playback (to satisfy browser autoplay policies)
   const startButton = document.createElement('button');
   startButton.textContent = 'Enter VR';
   startButton.style.position = 'absolute';
@@ -193,11 +192,15 @@ statueLoader.load(
   document.body.appendChild(startButton);
 
   startButton.addEventListener('click', () => {
-    audio.play();
-    startButton.remove(); // Clean up
+    audio.play().then(() => {
+      console.log('🎷 Background music playing');
+      startButton.remove();
+    }).catch((err) => {
+      console.error('⚠️ Audio play failed:', err);
+    });
   });
 });
-			
+		
                 self.loadingBar.visible = false;
 			
                 self.setupXR();
