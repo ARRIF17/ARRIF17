@@ -135,7 +135,33 @@ class App{
                 obj.name = "LobbyShop";
                 obj.position.copy(pos);
                 college.add( obj );
+
+
+				   const statueLoader = new GLTFLoader();
+                statueLoader.setDRACOLoader( dracoLoader ); // Reuse same Draco loader
                 
+                statueLoader.load(
+                    './Models/statue.glb',
+                    function( statueGltf ) {
+                        const statue = statueGltf.scene;
+                        
+                        // Position guard near entrance (adjust values as needed)
+                        statue.position.set( 6, 0.5, 4 );
+                        
+                        // Scale down if needed (GLB models often import too large)
+                        statue.scale.set( 0.03, 0.03, 0.03 );
+                        
+                        // Rotate to face correct direction
+                        statue.rotation.y = Math.PI/-2; // 
+                        
+                        self.scene.add( statue );
+                        console.log('Statue model loaded successfully');
+                    },
+                    undefined,
+                    function( error ) {
+                        console.error( 'Error loading statue model', error );
+                    }
+                );
                 self.loadingBar.visible = false;
 			
                 self.setupXR();
