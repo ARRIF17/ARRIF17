@@ -142,7 +142,7 @@ class App{
 console.log('Attempting to load statue model...');
 
 statueLoader.load(
-  './models/statue.glb',
+  './Models/statue.glb',
   function (statueGltf) {
     console.log('Statue model loaded successfully');
 
