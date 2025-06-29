@@ -18,7 +18,7 @@ class App{
 	audioLoader.load('./audio/bgm.mp3', (buffer) => {
 		this.sound.setBuffer(buffer);
 		this.sound.setLoop(true);
-		this.sound.setVolume(2);
+		this.sound.setVolume(0.5);
 		this.sound.play();
 	}, undefined, (err) => {
 		console.error('Error loading background music:', err);
@@ -73,7 +73,7 @@ class App{
         
 		this.loadingBar = new LoadingBar();
 		
-		this.loadCollege();
+		
         this.loadCollege();
 this.loadBGM();
         this.immersive = false;
