@@ -176,30 +176,29 @@ statueLoader.load(
   }
 );
 
-	document.addEventListener("DOMContentLoaded", () => {
-  const audio = new Audio('audio/jazz-lounge-elevator-music-332339.mp3');
-  audio.loop = true;
-  audio.volume = 1.0;
+	const bgSound = new THREE.Audio(listener); // 3D sound attached to camera
+const audioLoader = new THREE.AudioLoader();
 
-  const startButton = document.createElement('button');
-  startButton.textContent = 'Enter VR';
-  startButton.style.position = 'absolute';
-  startButton.style.top = '50%';
-  startButton.style.left = '50%';
-  startButton.style.transform = 'translate(-50%, -50%)';
-  startButton.style.padding = '1em 2em';
-  startButton.style.fontSize = '1.2em';
-  document.body.appendChild(startButton);
+audioLoader.load('./audio/', (buffer) => {
+    console.log("Background audio loaded");
+    bgSound.setBuffer(buffer);
+    bgSound.setLoop(true);
+    bgSound.setVolume(3); // Adjust volume if needed
+    this.scene.add(bgSound); // Attach to scene
 
-  startButton.addEventListener('click', () => {
-    audio.play().then(() => {
-      console.log('🎷 Background music playing');
-      startButton.remove();
-    }).catch((err) => {
-      console.error('⚠️ Audio play failed:', err);
-    });
-  });
+    // Required for browsers: user must click to start
+    const startAudio = () => {
+        if (!bgSound.isPlaying) {
+            bgSound.play();
+            console.log("Background music started");
+        }
+        window.removeEventListener('click', startAudio);
+    };
+    window.addEventListener('click', startAudio);
+}, undefined, (err) => {
+    console.error("Failed to load background audio", err);
 });
+
 		
                 self.loadingBar.visible = false;
 			
