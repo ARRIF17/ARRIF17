@@ -67,7 +67,27 @@ class App{
                 self.boardData = obj;
             });
 	}
-	
+
+export class App {
+  constructor() {
+    this.initGazeMessage();
+  }
+
+  initGazeMessage() {
+    const infoBox = document.querySelector('#infoBox');
+    if (infoBox) {
+      infoBox.addEventListener('click', () => {
+        const message = document.createElement('a-text');
+        message.setAttribute('value', 'Welcome to the VR Walkthrough!');
+        message.setAttribute('position', '0 2.5 -3');
+        message.setAttribute('color', 'black');
+        message.setAttribute('align', 'center');
+        message.setAttribute('scale', '1 1 1');
+        document.querySelector('a-scene').appendChild(message);
+      });
+    }
+  }
+}
     setEnvironment(){
         const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
