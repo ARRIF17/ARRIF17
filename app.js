@@ -423,5 +423,13 @@ statueLoader.load(
 		this.renderer.render(this.scene, this.camera);
 	}
 }
-
+document.getElementById('playMusic').addEventListener('click', () => {
+    if (THREE.AudioContext.getContext().state === 'suspended') {
+        THREE.AudioContext.getContext().resume();
+    }
+    if (this.sound && !this.sound.isPlaying) {
+        this.sound.play();
+        console.log('BGM manually started');
+    }
+});
 export { App };
