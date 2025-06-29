@@ -67,6 +67,26 @@ class App{
                 self.boardData = obj;
             });
 	}
+
+	 loadBGM(){
+	this.sound = new THREE.Audio(this.listener);
+
+	const audioLoader = new THREE.AudioLoader();
+	audioLoader.load('./audio/bgm.mp3', (buffer) => {
+		this.sound.setBuffer(buffer);
+		this.sound.setLoop(true);
+		this.sound.setVolume(5);
+		this.sound.play();
+	}, undefined, (err) => {
+		console.error('Error loading background music:', err);
+	});
+
+	document.body.addEventListener('click', () => {
+		if (this.sound && !this.sound.isPlaying) {
+			this.sound.play();
+		}
+	}, { once: true });
+}
 	
     setEnvironment(){
         const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
@@ -91,25 +111,7 @@ class App{
         this.camera.updateProjectionMatrix();
         this.renderer.setSize( window.innerWidth, window.innerHeight );  
     }
-    loadBGM(){
-	this.sound = new THREE.Audio(this.listener);
-
-	const audioLoader = new THREE.AudioLoader();
-	audioLoader.load('./audio/bgm.mp3', (buffer) => {
-		this.sound.setBuffer(buffer);
-		this.sound.setLoop(true);
-		this.sound.setVolume(5);
-		this.sound.play();
-	}, undefined, (err) => {
-		console.error('Error loading background music:', err);
-	});
-
-	document.body.addEventListener('click', () => {
-		if (this.sound && !this.sound.isPlaying) {
-			this.sound.play();
-		}
-	}, { once: true });
-}
+   
 	loadCollege(){
         
 		const loader = new GLTFLoader( ).setPath(this.assetsPath);
