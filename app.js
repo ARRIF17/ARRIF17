@@ -137,35 +137,42 @@ class App{
                 college.add( obj );
 
 
-				  const statueLoader = new GLTFLoader();
-statueLoader.setDRACOLoader(dracoLoader); // If you're using Draco-compressed models
+				 const statueLoader = new GLTFLoader();
+console.log('Attempting to load statue model...');
 
 statueLoader.load(
-  './Models/statue.glb', // ✅ Updated path and filename
+  './models/statue.glb',
   function (statueGltf) {
-    const statueLeft = statueGltf.scene.clone();  // Clone for the left side
-    const statueRight = statueGltf.scene.clone(); // Clone for the right side
+    console.log('Statue model loaded successfully');
 
-    // Position the left statue
+    // Optional debug
+    statueGltf.scene.traverse(child => {
+      if (child.isMesh) {
+        child.material = new THREE.MeshStandardMaterial({ color: 0xcccccc });
+        // child.material.wireframe = true; // Uncomment to debug
+      }
+    });
+
+    const statueLeft = statueGltf.scene.clone();
+    const statueRight = statueGltf.scene.clone();
+
     statueLeft.position.set(-1, 0, -4);
-    statueLeft.scale.set(0.5, 0.5, 0.5);
+    statueLeft.scale.set(1, 1, 1);
     statueLeft.rotation.y = Math.PI / 2;
 
-    // Position the right statue
     statueRight.position.set(1, 0, -4);
-    statueRight.scale.set(0.5, 0.5, 0.5);
+    statueRight.scale.set(1, 1, 1);
     statueRight.rotation.y = -Math.PI / 2;
 
     self.scene.add(statueLeft);
     self.scene.add(statueRight);
-
-    console.log('Both statue models loaded successfully');
   },
   undefined,
   function (error) {
     console.error('Error loading statue model:', error);
   }
 );
+
 				
                 self.loadingBar.visible = false;
 			
