@@ -176,15 +176,15 @@ statueLoader.load(
   }
 );
 
-	const bgSound = new THREE.Audio(listener); // 3D sound attached to camera
+	const bgSound = new THREE.Audio(this.listener); // 3D sound attached to camera
 const audioLoader = new THREE.AudioLoader();
 
 audioLoader.load('./audio/jazz-lounge-elevator-music-332339.mp3', (buffer) => {
     console.log("Background audio loaded");
     bgSound.setBuffer(buffer);
     bgSound.setLoop(true);
-    bgSound.setVolume(3); // Adjust volume if needed
-    this.scene.add(bgSound); // Attach to scene
+    bgSound.setVolume(3);
+    this.scene.add(bgSound);
 
     // Required for browsers: user must click to start
     const startAudio = () => {
