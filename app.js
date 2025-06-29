@@ -138,7 +138,7 @@ class App{
                 college.add( obj );
 
 
-				 const statueLoader = new GLTFLoader();
+	const statueLoader = new GLTFLoader();
 console.log('Attempting to load statue model...');
 
 statueLoader.load(
@@ -159,11 +159,11 @@ statueLoader.load(
 
     statueLeft.position.set(-1, 0, -4);
     statueLeft.scale.set(1, 1, 1);
-    statueLeft.rotation.y = Math.PI / 5;
+    statueLeft.rotation.y = Math.PI / 2;
 
     statueRight.position.set(1, 0, -4);
     statueRight.scale.set(1, 1, 1);
-    statueRight.rotation.y = -Math.PI / 5;
+    statueRight.rotation.y = -Math.PI / 2;
 
     self.scene.add(statueLeft);
     self.scene.add(statueRight);
