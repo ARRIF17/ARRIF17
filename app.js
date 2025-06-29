@@ -1,6 +1,7 @@
 
 
 
+
 import * as THREE from './libs/three/three.module.js';
 import { GLTFLoader } from './libs/three/jsm/GLTFLoader.js';
 import { DRACOLoader } from './libs/three/jsm/DRACOLoader.js';
@@ -14,30 +15,6 @@ import { XRControllerModelFactory } from './libs/three/jsm/XRControllerModelFact
 
 class App{
 	constructor(){
-		
-		const bgSound = new THREE.Audio(this.listener); // 3D sound attached to camera
-const audioLoader = new THREE.AudioLoader();
-
-audioLoader.load('./audio/jazz-lounge-elevator-music-332339.mp3', (buffer) => {
-    console.log("Background audio loaded");
-    bgSound.setBuffer(buffer);
-    bgSound.setLoop(true);
-    bgSound.setVolume(3);
-    this.scene.add(bgSound);
-
-    // Required for browsers: user must click to start
-    const startAudio = () => {
-        if (!bgSound.isPlaying) {
-            bgSound.play();
-            console.log("Background music started");
-        }
-        window.removeEventListener('click', startAudio);
-    };
-    window.addEventListener('click', startAudio);
-}, undefined, (err) => {
-    console.error("Failed to load background audio", err);
-});
-		
 		const container = document.createElement( 'div' );
 		document.body.appendChild( container );
 
@@ -200,7 +177,28 @@ statueLoader.load(
   }
 );
 
-	
+	const bgSound = new THREE.Audio(listener); // 3D sound attached to camera
+const audioLoader = new THREE.AudioLoader();
+
+audioLoader.load('./audio/jazz-lounge-elevator-music-332339.mp3', (buffer) => {
+    console.log("Background audio loaded");
+    bgSound.setBuffer(buffer);
+    bgSound.setLoop(true);
+    bgSound.setVolume(3); // Adjust volume if needed
+    this.scene.add(bgSound); // Attach to scene
+
+    // Required for browsers: user must click to start
+    const startAudio = () => {
+        if (!bgSound.isPlaying) {
+            bgSound.play();
+            console.log("Background music started");
+        }
+        window.removeEventListener('click', startAudio);
+    };
+    window.addEventListener('click', startAudio);
+}, undefined, (err) => {
+    console.error("Failed to load background audio", err);
+});
 
 		
                 self.loadingBar.visible = false;
