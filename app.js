@@ -179,7 +179,7 @@ statueLoader.load(
 	const bgSound = new THREE.Audio(listener); // 3D sound attached to camera
 const audioLoader = new THREE.AudioLoader();
 
-audioLoader.load('./audio/', (buffer) => {
+audioLoader.load('./audio/jazz-lounge-elevator-music-332339.mp3', (buffer) => {
     console.log("Background audio loaded");
     bgSound.setBuffer(buffer);
     bgSound.setLoop(true);
