@@ -183,7 +183,7 @@ loadBGM(){
 	audioLoader.load('./audio/bgm.mp3', (buffer) => {
 		this.sound.setBuffer(buffer);
 		this.sound.setLoop(true);
-		this.sound.setVolume(0.5);
+		this.sound.setVolume(5);
 		this.sound.play();
 	}, undefined, (err) => {
 		console.error('Error loading background music:', err);
