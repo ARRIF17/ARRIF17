@@ -138,38 +138,38 @@ class App{
 
 
 				 const statueLoader = new GLTFLoader();
-console.log('Attempting to load statue model...');
+console.log('📦 Attempting to load statue model...');
 
 statueLoader.load(
   './models/statue.glb',
-  function (statueGltf) {
-    console.log('Statue model loaded successfully');
+  (gltf) => {
+    console.log('✅ Statue model loaded successfully');
 
-    // Optional debug
-    statueGltf.scene.traverse(child => {
-      if (child.isMesh) {
-        child.material = new THREE.MeshStandardMaterial({ color: 0xcccccc });
-        // child.material.wireframe = true; // Uncomment to debug
-      }
-    });
+    const createStatue = (x, rotY) => {
+      const statue = gltf.scene.clone(true);
+      statue.position.set(x, 0, -4);
+      statue.scale.set(1, 1, 1);
+      statue.rotation.y = rotY;
 
-    const statueLeft = statueGltf.scene.clone();
-    const statueRight = statueGltf.scene.clone();
+      // Optional: standard material for all meshes
+      statue.traverse((child) => {
+        if (child.isMesh) {
+          child.material = new THREE.MeshStandardMaterial({ color: 0xcccccc });
+        }
+      });
 
-    statueLeft.position.set(-1, 0, -4);
-    statueLeft.scale.set(1, 1, 1);
-    statueLeft.rotation.y = Math.PI / 2;
+      return statue;
+    };
 
-    statueRight.position.set(1, 0, -4);
-    statueRight.scale.set(1, 1, 1);
-    statueRight.rotation.y = -Math.PI / 2;
+    const statueLeft = createStatue(-1.5, Math.PI / 2);
+    const statueRight = createStatue(1.5, -Math.PI / 2);
 
-    self.scene.add(statueLeft);
-    self.scene.add(statueRight);
+    scene.add(statueLeft);
+    scene.add(statueRight);
   },
   undefined,
-  function (error) {
-    console.error('Error loading statue model:', error);
+  (error) => {
+    console.error('❌ Error loading statue model:', error);
   }
 );
 
