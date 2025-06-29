@@ -137,31 +137,36 @@ class App{
                 college.add( obj );
 
 
-				   const statueLoader = new GLTFLoader();
-                statueLoader.setDRACOLoader( dracoLoader ); // Reuse same Draco loader
-                
-                statueLoader.load(
-                    './Models/statue.glb',
-                    function( statueGltf ) {
-                        const statue = statueGltf.scene;
-                        
-                        // Position guard near entrance (adjust values as needed)
-                        statue.position.set( 6, 0.5, 4 );
-                        
-                        // Scale down if needed (GLB models often import too large)
-                        statue.scale.set( 0.03, 0.03, 0.03 );
-                        
-                        // Rotate to face correct direction
-                        statue.rotation.y = Math.PI/-2; // 
-                        
-                        self.scene.add( statue );
-                        console.log('Statue model loaded successfully');
-                    },
-                    undefined,
-                    function( error ) {
-                        console.error( 'Error loading statue model', error );
-                    }
-                );
+				  const statueLoader = new GLTFLoader();
+statueLoader.setDRACOLoader(dracoLoader); // If you're using Draco-compressed models
+
+statueLoader.load(
+  './Models/statue.glb', // ✅ Updated path and filename
+  function (statueGltf) {
+    const statueLeft = statueGltf.scene.clone();  // Clone for the left side
+    const statueRight = statueGltf.scene.clone(); // Clone for the right side
+
+    // Position the left statue
+    statueLeft.position.set(-1, 0, -4);
+    statueLeft.scale.set(0.5, 0.5, 0.5);
+    statueLeft.rotation.y = Math.PI / 2;
+
+    // Position the right statue
+    statueRight.position.set(1, 0, -4);
+    statueRight.scale.set(0.5, 0.5, 0.5);
+    statueRight.rotation.y = -Math.PI / 2;
+
+    self.scene.add(statueLeft);
+    self.scene.add(statueRight);
+
+    console.log('Both statue models loaded successfully');
+  },
+  undefined,
+  function (error) {
+    console.error('Error loading statue model:', error);
+  }
+);
+				
                 self.loadingBar.visible = false;
 			
                 self.setupXR();
