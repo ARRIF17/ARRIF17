@@ -1,5 +1,6 @@
 
 
+
 import * as THREE from './libs/three/three.module.js';
 import { GLTFLoader } from './libs/three/jsm/GLTFLoader.js';
 import { DRACOLoader } from './libs/three/jsm/DRACOLoader.js';
@@ -138,38 +139,38 @@ class App{
 
 
 				 const statueLoader = new GLTFLoader();
-console.log('📦 Attempting to load statue model...');
+console.log('Attempting to load statue model...');
 
 statueLoader.load(
-  './Models/statue.glb',
-  (gltf) => {
-    console.log('✅ Statue model loaded successfully');
+  './models/statue.glb',
+  function (statueGltf) {
+    console.log('Statue model loaded successfully');
 
-    const createStatue = (x, rotY) => {
-      const statue = gltf.scene.clone(true);
-      statue.position.set(x, 0, -4);
-      statue.scale.set(1, 1, 1);
-      statue.rotation.y = rotY;
+    // Optional debug
+    statueGltf.scene.traverse(child => {
+      if (child.isMesh) {
+        child.material = new THREE.MeshStandardMaterial({ color: 0xcccccc });
+        // child.material.wireframe = true; // Uncomment to debug
+      }
+    });
 
-      // Optional: standard material for all meshes
-      statue.traverse((child) => {
-        if (child.isMesh) {
-          child.material = new THREE.MeshStandardMaterial({ color: 0xcccccc });
-        }
-      });
+    const statueLeft = statueGltf.scene.clone();
+    const statueRight = statueGltf.scene.clone();
 
-      return statue;
-    };
+    statueLeft.position.set(-1, 0, -4);
+    statueLeft.scale.set(1, 1, 1);
+    statueLeft.rotation.y = Math.PI / 5;
 
-    const statueLeft = createStatue(-1.5, Math.PI / 2);
-    const statueRight = createStatue(1.5, -Math.PI / 2);
+    statueRight.position.set(1, 0, -4);
+    statueRight.scale.set(1, 1, 1);
+    statueRight.rotation.y = -Math.PI / 5;
 
-    scene.add(statueLeft);
-    scene.add(statueRight);
+    self.scene.add(statueLeft);
+    self.scene.add(statueRight);
   },
   undefined,
-  (error) => {
-    console.error('❌ Error loading statue model:', error);
+  function (error) {
+    console.error('Error loading statue model:', error);
   }
 );
 
