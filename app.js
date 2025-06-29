@@ -11,6 +11,27 @@ import { CanvasUI } from './libs/CanvasUI.js';
 import { GazeController } from './libs/GazeController.js'
 import { XRControllerModelFactory } from './libs/three/jsm/XRControllerModelFactory.js';
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const scene = document.querySelector('a-scene');
+
+  // Left Statue
+  const leftStatue = document.createElement('a-entity');
+  leftStatue.setAttribute('gltf-model', '#statueModel');
+  leftStatue.setAttribute('position', '-1 0 -4');  // Adjust as needed
+  leftStatue.setAttribute('scale', '0.5 0.5 0.5');
+  leftStatue.setAttribute('rotation', '0 90 0');
+  scene.appendChild(leftStatue);
+
+  // Right Statue
+  const rightStatue = document.createElement('a-entity');
+  rightStatue.setAttribute('gltf-model', '#statueModel');
+  rightStatue.setAttribute('position', '1 0 -4');  // Mirror of left
+  rightStatue.setAttribute('scale', '0.5 0.5 0.5');
+  rightStatue.setAttribute('rotation', '0 -90 0');
+  scene.appendChild(rightStatue);
+});
 class App{
 	constructor(){
 		const container = document.createElement( 'div' );
