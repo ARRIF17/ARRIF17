@@ -11,6 +11,25 @@ import { GazeController } from './libs/GazeController.js'
 import { XRControllerModelFactory } from './libs/three/jsm/XRControllerModelFactory.js';
 
 class App{
+ loadBGM(){
+	this.sound = new THREE.Audio(this.listener);
+
+	const audioLoader = new THREE.AudioLoader();
+	audioLoader.load('./audio/bgm.mp3', (buffer) => {
+		this.sound.setBuffer(buffer);
+		this.sound.setLoop(true);
+		this.sound.setVolume(2);
+		this.sound.play();
+	}, undefined, (err) => {
+		console.error('Error loading background music:', err);
+	});
+
+	document.body.addEventListener('click', () => {
+		if (this.sound && !this.sound.isPlaying) {
+			this.sound.play();
+		}
+	}, { once: true });
+}
 	constructor(){
 		const container = document.createElement( 'div' );
 		document.body.appendChild( container );
@@ -55,7 +74,8 @@ class App{
 		this.loadingBar = new LoadingBar();
 		
 		this.loadCollege();
-        
+        this.loadCollege();
+this.loadBGM();
         this.immersive = false;
         
         const self = this;
@@ -68,26 +88,7 @@ class App{
             });
 	}
 
-	 this.loadCollege();
-this.loadBGM();{
-	this.sound = new THREE.Audio(this.listener);
-
-	const audioLoader = new THREE.AudioLoader();
-	audioLoader.load('./audio/bgm.mp3', (buffer) => {
-		this.sound.setBuffer(buffer);
-		this.sound.setLoop(true);
-		this.sound.setVolume(2);
-		this.sound.play();
-	}, undefined, (err) => {
-		console.error('Error loading background music:', err);
-	});
-
-	document.body.addEventListener('click', () => {
-		if (this.sound && !this.sound.isPlaying) {
-			this.sound.play();
-		}
-	}, { once: true });
-}
+	
 	
     setEnvironment(){
         const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
