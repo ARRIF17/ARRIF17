@@ -176,7 +176,28 @@ statueLoader.load(
   }
 );
 
-				
+	document.addEventListener("DOMContentLoaded", () => {
+  const audio = new Audio('audio/ambient.mp3'); // ✅ Path matches your folder
+  audio.loop = true;
+  audio.volume = 0.5;
+
+  // Button to trigger playback (to satisfy browser autoplay policies)
+  const startButton = document.createElement('button');
+  startButton.textContent = 'Enter VR';
+  startButton.style.position = 'absolute';
+  startButton.style.top = '50%';
+  startButton.style.left = '50%';
+  startButton.style.transform = 'translate(-50%, -50%)';
+  startButton.style.padding = '1em 2em';
+  startButton.style.fontSize = '1.2em';
+  document.body.appendChild(startButton);
+
+  startButton.addEventListener('click', () => {
+    audio.play();
+    startButton.remove(); // Clean up
+  });
+});
+			
                 self.loadingBar.visible = false;
 			
                 self.setupXR();
